@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartPort Control Center</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ⚓
+            </div>
+
+            <div>
+                <h2>SmartPort</h2>
+                <span>Control Center</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                    class="nav active"
+                    onclick="show('dashboard', this)">
+                ⌂ Dashboard
+            </button>
+
+
+            <button
+                    class="nav"
+                    onclick="show('fleet', this)">
+                🚛 Fleet
+            </button>
+
+
+            <button
+                    class="nav"
+                    onclick="show('batteries', this)">
+                🔋 Batteries
+            </button>
+
+
+            <button
+                    class="nav"
+                    onclick="show('moves', this)">
+                📦 Container Moves
+            </button>
+
+
+            <button
+                    class="nav"
+                    onclick="show('customers', this)">
+                🏢 Customers
+            </button>
+
+            <button
+                    class="nav"
+                    onclick="show('invoices', this)">
+                🧾 Invoices
+            </button>
+
+            <button
+                    class="nav"
+                    onclick="show('payments', this)">
+                💳 Payments
+            </button>
+
+            <button
+                    class="nav"
+                    onclick="show('budgets', this)">
+                📊 Budgets
+            </button>
+
+
+            <button
+                    class="nav"
+                    onclick="show('finance', this)">
+                ₹ Finance
+            </button>
+
+        </nav>
+
+
+        <div class="online">
+            <span></span>
+            System Online
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <!-- HEADER -->
+
+        <header>
+
+            <div>
+
+                <h1 id="title">
+                    Dashboard
+                </h1>
+
+                <p>
+                    Smart Port Automated Electric Fleet Management
+                </p>
+
+            </div>
+
+
+            <button
+                    class="refresh"
+                    onclick="loadAll()">
+                ↻ Refresh Data
+            </button>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             DASHBOARD
+        ====================================================== -->
+
+        <section
+                id="dashboard"
+                class="page active">
+
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div>
+
+                    <small>
+                        LIVE OPERATIONS
+                    </small>
+
+                    <h2>
+                        Fleet Control Center
+                    </h2>
+
+                    <p>
+                        Monitor carriers, batteries, container movements and finances.
+                    </p>
+
+                </div>
+
+
+                <div class="hero-icon">
+                    ⚓
+                </div>
+
+            </div>
+
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <span>
+                        🚛
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Total Carriers
+                        </small>
+
+                        <h2 id="totalCarriers">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Available
+                        </small>
+
+                        <h2 id="available">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span>
+                        🔋
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Low Battery
+                        </small>
+
+                        <h2 id="lowBattery">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span>
+                        📦
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Total Moves
+                        </small>
+
+                        <h2 id="totalMoves">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span>
+                        ✓
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Completed
+                        </small>
+
+                        <h2 id="completed">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat">
+
+                    <span>
+                        ₹
+                    </span>
+
+                    <div>
+
+                        <small>
+                            Revenue
+                        </small>
+
+                        <h2 id="revenue">
+                            ₹0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- BUDGET + SYSTEM -->
+
+            <div class="grid-2">
+
+
+                <div class="panel">
+
+                    <h3>
+                        Budget Overview
+                    </h3>
+
+
+                    <div class="money">
+
+                        <span>
+                            Planned Budget
+                        </span>
+
+                        <b id="planned">
+                            ₹0
+                        </b>
+
+                    </div>
+
+
+                    <div class="money">
+
+                        <span>
+                            Actual Usage
+                        </span>
+
+                        <b id="actual">
+                            ₹0
+                        </b>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div id="progress"></div>
+
+                    </div>
+
+
+                    <div class="money">
+
+                        <span>
+                            Remaining
+                        </span>
+
+                        <b id="remaining">
+                            ₹0
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="panel">
+
+                    <h3>
+                        System Status
+                    </h3>
+
+
+                    <div class="status">
+
+                        <span>
+                            Spring Boot API
+                        </span>
+
+                        <b>
+                            ONLINE
+                        </b>
+
+                    </div>
+
+
+                    <div class="status">
+
+                        <span>
+                            MySQL Database
+                        </span>
+
+                        <b>
+                            CONNECTED
+                        </b>
+
+                    </div>
+
+
+                    <div class="status">
+
+                        <span>
+                            Fleet Monitoring
+                        </span>
+
+                        <b>
+                            ACTIVE
+                        </b>
+
+                    </div>
+
+
+                    <div class="status">
+
+                        <span>
+                            Battery Monitoring
+                        </span>
+
+                        <b>
+                            ACTIVE
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FLEET (CARRIERS)
+        ====================================================== -->
+
+        <section
+                id="fleet"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        🚛 Fleet Management
+                    </h2>
+
+                    <p>
+                        All electric straddle carriers
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openCarrierModal()">
+                    + Add Carrier
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Carrier #</th>
+
+                        <th>Manufacturer</th>
+
+                        <th>Model</th>
+
+                        <th>Battery</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="fleetTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             BATTERIES
+        ====================================================== -->
+
+        <section
+                id="batteries"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        🔋 Battery Management
+                    </h2>
+
+                    <p>
+                        Monitor and manage battery pack availability and charge
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openBatteryModal()">
+                    + Add Battery
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Battery #</th>
+
+                        <th>Charge %</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="batteryTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTAINER MOVES
+        ====================================================== -->
+
+        <section
+                id="moves"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        📦 Container Moves
+                    </h2>
+
+                    <p>
+                        Track container movement across the port
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openMoveModal()">
+                    + Add Container Move
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Container #</th>
+
+                        <th>Source</th>
+
+                        <th>Destination</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                        <th>Carrier</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="movesTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CUSTOMERS
+        ====================================================== -->
+
+        <section
+                id="customers"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        🏢 Customer Management
+                    </h2>
+
+                    <p>
+                        Port clients, shipping partners and cargo companies
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openCustomerModal()">
+                    + Add Customer
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Company Name</th>
+
+                        <th>Contact</th>
+
+                        <th>Email</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="customersTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INVOICES
+        ====================================================== -->
+
+        <section
+                id="invoices"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        🧾 Invoice Management
+                    </h2>
+
+                    <p>
+                        Client billing and container service invoices
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openInvoiceModal()">
+                    + Add Invoice
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Invoice ID</th>
+
+                        <th>Customer</th>
+
+                        <th>Move Container</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="invoicesTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PAYMENTS
+        ====================================================== -->
+
+        <section
+                id="payments"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        💳 Payment Transactions
+                    </h2>
+
+                    <p>
+                        Payment records received for client invoices
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openPaymentModal()">
+                    + Add Payment
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Payment ID</th>
+
+                        <th>Invoice ID</th>
+
+                        <th>Amount</th>
+
+                        <th>Method</th>
+
+                        <th>Payment Date</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="paymentsTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             BUDGETS
+        ====================================================== -->
+
+        <section
+                id="budgets"
+                class="page">
+
+
+            <div class="page-head-actions">
+
+                <div>
+
+                    <h2>
+                        📊 Sector Budgets
+                    </h2>
+
+                    <p>
+                        Port sector allocation and actual expenditure tracking
+                    </p>
+
+                </div>
+
+                <button class="btn-add" onclick="openBudgetModal()">
+                    + Add Sector Budget
+                </button>
+
+            </div>
+
+
+
+            <div class="panel table-panel">
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Sector Name</th>
+
+                        <th>Planned Amount</th>
+
+                        <th>Actual Usage</th>
+
+                        <th>Remaining</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="budgetsTable">
+
+                    </tbody>
+
+
+                </table>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             FINANCE OVERVIEW
+        ====================================================== -->
+
+        <section
+                id="finance"
+                class="page">
+
+
+            <div class="page-head">
+
+                <div>
+
+                    <h2>
+                        ₹ Financial Overview
+                    </h2>
+
+                    <p>
+                        Revenue, payments and budget summary
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="finance">
+
+
+                <div class="finance-card">
+
+                    <small>
+                        Total Revenue
+                    </small>
+
+                    <h2 id="fRevenue">
+                        ₹0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="finance-card">
+
+                    <small>
+                        Payments Received
+                    </small>
+
+                    <h2 id="fPayments">
+                        ₹0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="finance-card">
+
+                    <small>
+                        Planned Budget
+                    </small>
+
+                    <h2 id="fPlanned">
+                        ₹0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="finance-card">
+
+                    <small>
+                        Remaining Budget
+                    </small>
+
+                    <h2 id="fRemaining">
+                        ₹0
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     DYNAMIC MODAL DIALOG
+====================================================== -->
+
+<div id="crudModal" class="modal-overlay">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+            <h3 id="modalTitle">Form Title</h3>
+            <button class="modal-close" onclick="closeModal()">×</button>
+        </div>
+
+        <form id="crudForm" onsubmit="handleFormSubmit(event)">
+
+            <input type="hidden" id="entityId" value="">
+
+            <div id="modalFormFields">
+                <!-- Injected dynamically -->
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="submit" class="btn-primary" id="modalSubmitBtn">Save Record</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>

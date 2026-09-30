@@ -1,0 +1,935 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+button {
+    font-family: inherit;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    width: 240px;
+    background: #101827;
+    color: white;
+    padding: 24px 16px;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: #2563eb;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    box-shadow: 0 5px 15px #2563eb55;
+}
+
+.brand h2 {
+    font-size: 20px;
+}
+
+.brand span {
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #aeb9ca;
+    padding: 14px;
+    text-align: left;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.nav:hover {
+    background: #1e293b;
+    color: white;
+    transform: translateX(2px);
+}
+
+.nav.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 5px 15px #2563eb44;
+}
+
+
+/* ONLINE STATUS */
+
+.online {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    font-size: 13px;
+    color: #aeb9ca;
+}
+
+.online span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-right: 7px;
+    box-shadow: 0 0 8px #22c55e;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+main {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+    padding: 30px 35px;
+}
+
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 28px;
+}
+
+header p {
+    color: #718096;
+    margin-top: 5px;
+}
+
+
+/* REFRESH BUTTON */
+
+.refresh {
+    border: none;
+    background: white;
+    color: #172033;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 3px 12px #0000000d;
+    transition: 0.2s ease;
+}
+
+.refresh:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   PAGES
+===================================================== */
+
+.page {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    background: linear-gradient(
+            120deg,
+            #1d4ed8,
+            #2563eb
+    );
+
+    color: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    box-shadow: 0 10px 30px #2563eb22;
+}
+
+.hero small {
+    opacity: .8;
+    letter-spacing: 1px;
+}
+
+.hero h2 {
+    margin: 8px 0;
+    font-size: 25px;
+}
+
+.hero p {
+    opacity: .85;
+}
+
+.hero-icon {
+    font-size: 70px;
+    opacity: .25;
+}
+
+
+/* =====================================================
+   STATISTICS
+===================================================== */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.stat {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+
+    box-shadow:
+            0 4px 15px #0000000a;
+
+    transition: 0.2s ease;
+}
+
+.stat:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+            0 8px 25px #00000012;
+}
+
+.stat > span {
+    width: 45px;
+    height: 45px;
+
+    background: #eef4ff;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    font-size: 20px;
+}
+
+.stat small {
+    color: #718096;
+}
+
+.stat h2 {
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   PANELS
+===================================================== */
+
+.grid-2 {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+            0 4px 15px #0000000a;
+}
+
+.panel h3 {
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   MONEY / STATUS
+===================================================== */
+
+.money,
+.status {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 13px 0;
+
+    border-bottom:
+            1px solid #edf0f5;
+}
+
+.money span,
+.status span {
+    color: #718096;
+}
+
+.money b {
+    font-size: 15px;
+}
+
+.status b {
+    color: #16a34a;
+
+    font-size: 11px;
+
+    background: #dcfce7;
+
+    padding: 5px 8px;
+
+    border-radius: 15px;
+}
+
+
+/* =====================================================
+   PROGRESS BAR
+===================================================== */
+
+.progress {
+    height: 9px;
+
+    background: #edf0f5;
+
+    border-radius: 10px;
+
+    margin: 15px 0;
+
+    overflow: hidden;
+}
+
+.progress div {
+    height: 100%;
+
+    width: 0;
+
+    background: #2563eb;
+
+    border-radius: 10px;
+
+    transition:
+            width 0.5s ease;
+}
+
+
+/* =====================================================
+   PAGE HEAD
+===================================================== */
+
+.page-head {
+    margin-bottom: 20px;
+}
+
+.page-head h2 {
+    margin-bottom: 5px;
+}
+
+.page-head p {
+    color: #718096;
+}
+
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+.table-panel {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 650px;
+}
+
+th {
+    text-align: left;
+
+    color: #718096;
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    padding: 15px;
+
+    background: #f8fafc;
+
+    white-space: nowrap;
+}
+
+td {
+    padding: 16px 15px;
+
+    border-bottom:
+            1px solid #edf0f5;
+
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: 0.15s ease;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =====================================================
+   STATUS BADGE
+===================================================== */
+
+.badge {
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #dcfce7;
+
+    color: #15803d;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   BATTERY COLORS
+===================================================== */
+
+.low {
+    color: #dc2626;
+
+    font-weight: bold;
+}
+
+.medium {
+    color: #d97706;
+
+    font-weight: bold;
+}
+
+.good {
+    color: #16a34a;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+td button {
+    border: none;
+
+    width: 34px;
+
+    height: 32px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    background: #eef4ff;
+
+    transition: 0.2s ease;
+
+    font-size: 15px;
+}
+
+td button:hover {
+    background: #2563eb;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   FINANCE
+===================================================== */
+
+.finance {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+}
+
+.finance-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow:
+            0 4px 15px #0000000a;
+
+    transition: 0.2s ease;
+}
+
+.finance-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+            0 8px 25px #00000012;
+}
+
+.finance-card small {
+    color: #718096;
+}
+
+.finance-card h2 {
+    margin-top: 12px;
+
+    font-size: 24px;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =====================================================
+   TABLE EMPTY STATE
+===================================================== */
+
+td[colspan] {
+    text-align: center;
+
+    color: #718096;
+
+    padding: 30px;
+}
+
+
+/* =====================================================
+   MOBILE / TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .finance {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    main {
+        margin-left: 190px;
+
+        width:
+                calc(100% - 190px);
+    }
+
+    .grid-2 {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    main {
+        margin-left: 0;
+
+        width: 100%;
+
+        padding: 20px;
+    }
+
+    header {
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    header h1 {
+        font-size: 23px;
+    }
+
+    .refresh {
+        padding: 9px 12px;
+    }
+
+    .stats {
+        grid-template-columns:
+            1fr;
+    }
+
+    .grid-2 {
+        grid-template-columns:
+            1fr;
+    }
+
+    .finance {
+        grid-template-columns:
+            1fr;
+    }
+
+    .hero {
+        padding: 22px;
+    }
+
+    .hero-icon {
+        display: none;
+    }
+
+}
+
+/* =====================================================
+   ACTION BUTTONS & MODAL STYLES
+===================================================== */
+
+.page-head-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    transition: 0.2s ease;
+}
+
+.btn-add:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.action-btn {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.action-btn.edit {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.action-btn.edit:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.action-btn.delete {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.action-btn.delete:hover {
+    background: #dc2626;
+    color: white;
+}
+
+/* MODAL OVERLAY & CARD */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(16, 24, 39, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-card {
+    background: white;
+    width: 90%;
+    max-width: 520px;
+    border-radius: 16px;
+    padding: 24px 28px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf0f5;
+}
+
+.modal-header h3 {
+    font-size: 20px;
+    color: #101827;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #64748b;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #0f172a;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #edf0f5;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
